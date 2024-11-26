@@ -2,7 +2,7 @@ poker=['H2','H3','H4','H5','H6','H7','H8','C2','C3','C4','C5','C6','C7','C8','Jo
 Play1=list(input().split())
 Play2=list(input().split())
 Com=list(input().split())
-mistake=True
+mistake=0
 def clean(Play_1):
     Play=[]
     for i in range(len(Play_1)):
@@ -13,13 +13,13 @@ def clean(Play_1):
     for i in range(len(Play)):
         Play_1.remove(Play[i])
 
-def Draw(Play_1,Play_2):
+def Draw(Play_1,Play_2,mistake):
     temp=input()
-    if temp in Play_2:
+    if temp in Play_2 and mistake!=1:
         Play_1.append(temp)
         Play_2.remove(temp)
     else:
-        return False
+        return 1
 
 
 def Clean(Play1,Play2,Com):
@@ -29,10 +29,13 @@ def Clean(Play1,Play2,Com):
     
 Clean(Play1,Play2,Com)
 
-mistake=Draw(Play1,Play2)
-mistake=Draw(Play2,Com)
-mistake=Draw(Com,Play1)
+mistake=Draw(Play1,Play2,mistake)
+Clean(Play1,Play2,Com)
 
+mistake=Draw(Play2,Com,mistake)
+Clean(Play1,Play2,Com)
+
+mistake=Draw(Com,Play1,mistake)
 Clean(Play1,Play2,Com)
 
 if mistake==None:
