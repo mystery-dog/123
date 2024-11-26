@@ -39,10 +39,9 @@ def solve_sudoku(board):
 
 
 def input_sudoku():
-    print("請輸入數獨的題目，每行用空格分隔數字 (0 代表空白格)：")
     board = []
     for i in range(4):
-        row = list(map(int, input(f"輸入第 {i + 1} 行: ").split()))
+        row = list(map(int, input().split()))
 #list():將字符串分割 ex:list('Hello') output(['H','e','l','l','o'])
 #.split():將字符串以空格分割 ex:('Hello World') output(['Hello', 'World'])
 #map(int):將內容形態轉成int
@@ -57,7 +56,6 @@ def input_sudoku():
 sudoku_board = input_sudoku()
 
 if solve_sudoku(sudoku_board):
-    print("解答如下：")
     print_board(sudoku_board)
 else:
     print("不存在解答")
